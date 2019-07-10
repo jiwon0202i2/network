@@ -1,0 +1,185 @@
+!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Souvenirs</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="shortcut icon" href="favicon.ico">
+        <link rel="stylesheet" href="header.css">
+        <style>
+            @font-face{
+                font-family: MGothic;
+                src: local('210 M고딕050'),
+                    url('210 M고딕050.ttf') format('truetype');
+            }
+            #header {
+                position: fixed;
+                left: 0;
+                top: 0;
+                width: 250px;
+                height: 100vh;
+                background: #FFC2C5;
+                padding: 50px 0;
+            }
+            #fullpage {
+                margin-top: 50px;
+                margin-left: 290px;
+            }
+            article{
+                display:inline-block;
+                border-radius: 3px;
+                border: 1px solid #e6e6e6;
+                max-width: 464px;
+                margin-right: 60px;
+                margin-bottom: 40px;
+            }
+            article > span{
+                font-family: MGothic, sans-serif;
+            }
+            article > div > img{
+                height: 350px;
+                width: 100%;
+            }
+            /* 게시판 리스트 목록 */
+            .sub_news,.sub_news th,.sub_news td {
+                border:0;
+                font-family: MGothic, sans-serif;
+            }
+            .sub_news a {
+                color:#383838;
+                text-decoration:none
+            }
+            .sub_news {
+                width:100%;
+                border-bottom:1px solid #999;
+                color:#666;
+                font-size:12px;
+                table-layout:fixed
+            }
+            .sub_news caption{
+                display:none
+            }
+            .sub_news th {
+                padding:5px 0 6px;
+                border-top:solid 1px #999;
+                border-bottom:solid 1px #b2b2b2;
+                background-color:#f1f1f4;
+                color:#333;
+                font-weight:bold;
+                line-height:20px;
+                vertical-align:top
+            }
+            .sub_news td {
+                padding:8px 0 9px;
+                border-bottom:solid 1px #d2d2d2;
+                text-align:center;
+                line-height:18px;
+            }
+            .sub_news .date,.sub_news .hit {
+                padding:0;
+                font-family:Tahoma;
+                font-size:11px;
+                line-height:normal
+            }
+            .sub_news .title {
+                text-align:left;
+                padding-left:15px; 
+                font-size:13px;
+            }
+            .sub_news .title .pic,.sub_news .title .new {
+                margin:0 0 2px;
+                vertical-align:middle
+            }
+            .sub_news .title a.comment {
+                padding:0;
+                background:none;
+                color:#f00;
+                font-size:12px;
+                font-weight:bold
+            }
+            .sub_news tr.reply .title a{
+                padding-left:16px;
+                background:url(첨부파일/ic_reply.png) 0 1px no-repeat
+            }
+            /* //게시판 리스트 목록 */
+        </style>
+    </head>
+    <body>
+        <header id="header">
+            <div>
+                <div class="logo">
+                    <a href="/main">
+                        <img src="mainLogo.png" width="80%">
+                    </a>
+                </div>
+                <nav id="nav">
+                    <ul>
+                        <li>
+                            <a href="/main" class="group">
+                                <span>그룹 1</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/imgUp" class="upload">
+                                <span>업로드</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <nav id="nav">
+                        <ul>
+                        <li>
+                            <a href="/friend" class="group">
+                                <span>친구</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>  
+            </div>
+        </header>
+        <div id="fullpage">
+            <div class="cGcGK">
+                <table class="sub_news" border="1" cellspacing="0" summary="게시판의 글제목 리스트">
+                    <caption>게시판 리스트</caption>
+                    <colgroup>
+                        <col width="20">
+                        <col width="110">
+
+                        <col width="100">
+                        <col width="80">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <!-- <th scope="col">아이디</th>
+                            <th scope="col">제목</th>
+                            <th scope="col">글쓴이</th>
+                            <th scope="col">날짜</th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- <table border='1'> -->
+                            <tr>
+                                <th>번호</th>
+                                <th>제목</th>
+                                <th>작성자</th>
+                            </tr>
+                        <%         
+                        for(let i=0; i<model.boardList.length; i++) {        
+                        %> 
+                        <tr>   
+                            <td><%=model.boardList[i].idx %></td>
+                            <td><a href='/boardDetail/<%=model.boardList[i].idx%>'><%=model.boardList[i].board_title %></a></td>
+                            <td><%=model.boardList[i].board_user %></td>
+                        </tr>                   
+                        <%  
+                        }
+                        %>
+                    </tbody> 
+                </table> 
+            </div>
+        </div>
+    </body>
+</html>

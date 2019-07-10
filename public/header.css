@@ -1,0 +1,77 @@
+@media (max-height: 890px){
+    #header {
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+}
+@font-face{
+    font-family: MGothic;
+    src: local('210 M고딕050'),
+         url('210 M고딕050.ttf') format('truetype');
+}
+a {
+    color: #555;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+#header .logo a {
+    display: inline-block;
+    padding-bottom: 40px;
+}
+#header .logo {
+    position: relative;
+    margin-bottom: 20px;
+    text-align: center;
+}
+#header .logo::after {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 180px;
+    height: 1px;
+    background: #fdf4f4;
+    content: '';
+}
+ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+.group {
+    display: inline-block;
+    padding: 25px 41px 10px 30px;
+    font-size: 1.4rem;
+    color: #2d2d2d;
+    font-family: MGothic, sans-serif;
+    font-weight: 600;
+}
+.upload{
+    display: inline-block;
+    padding: 25px 41px 10px 30px;
+    font-size: 1.2rem;
+    color: #2d2d2d;
+    font-family: MGothic, sans-serif; 
+}
+ul > li{
+    font-family: MGothic, sans-serif;
+}
+.cGcGK {
+    float: left;
+    margin-right: 28px;
+}

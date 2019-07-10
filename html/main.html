@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Souvenirs</title>
+        <link rel="shortcut icon" href="favicon.ico">
+        <style>
+            @media (max-height: 890px){
+                #header {
+                    overflow-y: auto;
+                    overflow-x: hidden;
+                }
+            }
+            @font-face{
+                font-family: MGothic;
+                src: local('210 M고딕050'),
+                     url('210 M고딕050.ttf') format('truetype');
+            }
+            #header {
+                position: fixed;
+                left: 0;
+                top: 0;
+                width: 310px;
+                height: 100vh;
+                background: #FFC2C5;
+                padding: 50px 0;
+            }
+            a {
+                color: #555;
+                text-decoration: none;
+                margin: 0;
+                padding: 0;
+                vertical-align: baseline;
+            }
+            #header .logo a {
+                display: inline-block;
+                padding-bottom: 40px;
+            }
+            #header .logo {
+                position: relative;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+            #header .logo::after {
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 216px;
+                height: 1px;
+                background: #fdf4f4;
+                content: '';
+            }
+            ul, li {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+            }
+            ul {
+                display: block;
+                list-style-type: disc;
+                margin-block-start: 1em;
+                margin-block-end: 1em;
+                margin-inline-start: 0px;
+                margin-inline-end: 0px;
+                padding-inline-start: 40px;
+            }
+            li {
+                display: list-item;
+                text-align: -webkit-match-parent;
+            }
+            #nav > ul > li > a {
+                display: inline-block;
+                padding: 25px 41px 10px 48px;
+                font-size: 1.9rem;
+                color: #2d2d2d;
+                font-family: MGothic, sans-serif;
+                font-weight: 600;
+            }
+            ul > li{
+                font-family: MGothic, sans-serif;
+            }
+            #fullpage {
+                margin-left: 460px;
+            }
+            article{
+                display:inline-block;
+                border-radius: 3px;
+                border: 1px solid #e6e6e6;
+                max-width: 614px;
+                margin-right: 60px;
+                margin-bottom: 40px;
+            }
+            article > span{
+                font-family: MGothic, sans-serif;
+            }
+            .cGcGK {
+                float: left;
+                margin-right: 28px;
+                max-width: 81.250em; 
+                width: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <header id="header">
+            <div>
+                <div class="logo">
+                    <a href="main.html">
+                        <img src="mainLogo.png" width="80%">
+                    </a>
+                </div>
+                <nav id="nav">
+                    <ul>
+                        <li>
+                            <a href="main.html">
+                                <span>그룹 1</span>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="imgUp.html">
+                                        <span>사진 업로드</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <div id="fullpage">
+            <div class="cGcGK">
+                <article>
+                    <div>
+                        <img src="https://image-cdn.hypb.st/https%3A%2F%2Fkr.hypebeast.com%2Ffiles%2F2018%2F04%2Fphoto-editor-app-recommendation-01.jpg?q=75&w=800&cbr=1&fit=max" alt="" height="500px" width="100%">
+                    </div>
+                    <div>
+                        <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis debitis sit recusandae hic ea odit unde ipsa dignissimos numquam minus beatae voluptatem sapi</span>
+                    </div>
+                </article>
+                <article>
+                    <div>
+                        <img src="https://www.apple.com/newsroom/images/product/iphone/lifestyle/Shot-on-iPhone-Challenge-Announcement-Swimming-in-water_big.jpg.large.jpg" alt="" height="500px" width="100%">
+                    </div>
+                    <div>
+                        <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis debitis sit recusandae hic ea odit unde ipsa dignissimos numquam minus beatae voluptatem sapi</span>
+                    </div>
+                </article>
+                <article>
+                    <div>
+                        <img src="https://s-i.huffpost.com/gen/2547904/images/n-LENS-GIRL-628x314.jpg" alt="" height="500px" width="100%">
+                    </div>
+                    <div>
+                        <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis debitis sit recusandae hic ea odit unde ipsa dignissimos numquam minus beatae voluptatem sapi</span>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </body>
+</html>  

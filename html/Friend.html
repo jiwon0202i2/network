@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Souvenirs</title>
+        <link rel="shortcut icon" href="favicon.ico">
+        <style>
+            @media ( max-width: 1000px ) {
+                .utilityBlock{
+                    -moz-box-flex: 0.3;
+                    -ms-flex: 0.3;
+                    flex: 0.3;
+                }
+                .Block{
+                    -moz-box-flex: 0.7;
+                    -ms-flex: 0.7;
+                    flex: 0.7;
+                }
+                .profile{
+                    width: 60%;
+                }
+            }
+            @media (min-width: 1001px){
+                .utilityBlock{
+                    -moz-box-flex: 0.25;
+                    -ms-flex: 0.25;
+                    flex: 0.25;
+                }
+                .Block{
+                    -moz-box-flex: 0.75;
+                    -ms-flex: 0.75;
+                    flex: 0.75;
+                }
+            }
+            html, body {
+                    width: 100%;
+                    height: 100%;
+                    margin: 0;
+            }
+            .content {
+                background-color: #fff;
+                display: -moz-box;
+                display: -ms-flexbox;
+                display: flex;
+                -moz-box-orient: horizontal;
+                -moz-box-direction: reverse;
+                -moz-box-flex: 1;
+                -ms-flex-positive: 1;
+                flex-grow: 1;
+                height: 100%;
+            }
+            .cell {
+                -moz-box-align: center;
+                -ms-flex-align: center;
+                align-items: center;
+                display: -moz-box;
+                display: -ms-flexbox;
+                display: inline-flex;
+                -moz-box-pack: center;
+                -ms-flex-pack: center;
+                justify-content: center;
+                position: relative;
+            }
+            .Block {
+                overflow: hidden;
+                position: relative;
+            }
+            .utilityBlock{
+                background: #FFC2C5;
+                text-align: center;
+            }
+            body {
+                background: #e6ecf0;
+                color: #14171a;
+                font-size: 14px;
+                line-height: 20px;
+                overflow-y: scroll;
+            }
+            .FriAdd {
+                width:100px;
+                background-color: #FFC2C5;
+                border: 3px solid;
+                padding: 8px 0;
+                text-decoration: none;
+                font-size: 15px;
+                margin: 4px;
+                cursor: pointer;
+                border-radius:10px;
+            }
+        </style>
+    </head>
+    <body>
+            <div class="content">
+                <div class="cell utilityBlock">
+                    <div>
+                        <img src="profile.png" class="profile">
+                        <h2>닉네임</h3>
+                            <form action="">
+                                <button type="submit" class="FriAdd">친구추가</button>
+                            </form>
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facere saepe non quos unde pariatur repellendus atque culpa soluta amet. Deleniti exercitationem dicta, id dolore mollitia blanditiis voluptates excepturi consectetur fugit?
+
+                    </div>
+                </div>
+                <div class="cell Block">
+                    <img src="LOGO.png" alt="">
+                </div>
+            </div>
+    </body>
+</html>

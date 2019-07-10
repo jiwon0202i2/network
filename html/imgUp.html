@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Souvenirs</title>
+        <link rel="shortcut icon" href="favicon.ico">
+        <script>
+            function preview(View_area) {
+                var preview = document.getElementById(View_area);
+                var img = document.createElement("img");
+                img.id = "prev_" + View_area;
+                img.scr = 'no_detail_img.png';
+                img.style.width = '614px'; 
+                img.style.height = '500px';
+                preview.appendChild(img);
+            }
+            function previewImage(targetObj, View_area) {
+                var preview = document.getElementById(View_area); //div id
+                var ua = window.navigator.userAgent;
+
+            //ie일때(IE8 이하에서만 작동)
+                if (ua.indexOf("MSIE") > -1) {
+                    targetObj.select();
+                    try {
+                        var src = document.selection.createRange().text; // get file full path(IE9, IE10에서 사용 불가)
+                        var ie_preview_error = document.getElementById("ie_preview_error_" + View_area);
+
+
+                        if (ie_preview_error) {
+                            preview.removeChild(ie_preview_error); //error가 있으면 delete
+                        }
+
+                        var img = document.getElementById(View_area); //이미지가 뿌려질 곳
+
+                        //이미지 로딩, sizingMethod는 div에 맞춰서 사이즈를 자동조절 하는 역할
+                        img.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='"+src+"', sizingMethod='scale')";
+                    } catch (e) {
+                        if (!document.getElementById("ie_preview_error_" + View_area)) {
+                            var info = document.createElement("<p>");
+                            info.id = "ie_preview_error_" + View_area;
+                            info.innerHTML = e.name;
+                            preview.insertBefore(info, null);
+                        }
+                    }
+            //ie가 아닐때(크롬, 사파리, FF)
+                } else {
+                    var files = targetObj.files;
+                    for ( var i = 0; i < files.length; i++) {
+                        var file = files[i];
+                        var imageType = /image.*/; //이미지 파일일경우만.. 뿌려준다.
+                        if (!file.type.match(imageType))
+                            continue;
+                        var prevImg = document.getElementById("prev_" + View_area); //이전에 미리보기가 있다면 삭제
+                        if (prevImg) {
+                            preview.removeChild(prevImg);
+                        }
+                        var img = document.createElement("img"); 
+                        img.id = "prev_" + View_area;
+                        img.classList.add("obj");
+                        img.file = file;
+                        img.style.width = '614px'; 
+                        img.style.height = '500px';
+                        preview.appendChild(img);
+                        if (window.FileReader) { // FireFox, Chrome, Opera 확인.
+                            var reader = new FileReader();
+                            reader.onloadend = (function(aImg) {
+                                return function(e) {
+                                    aImg.src = e.target.result;
+                                };
+                            })(img);
+                            reader.readAsDataURL(file);
+                        } else { // safari is not supported FileReader
+                            //alert('not supported FileReader');
+                            if (!document.getElementById("sfr_preview_error_"
+                                    + View_area)) {
+                                var info = document.createElement("p");
+                                info.id = "sfr_preview_error_" + View_area;
+                                info.innerHTML = "not supported FileReader";
+                                preview.insertBefore(info, null);
+                            }
+                        }
+                    }
+                }
+            }
+        </script>
+        <style>
+            @media (max-height: 890px){
+                #header {
+                    overflow-y: auto;
+                    overflow-x: hidden;
+                }
+            }
+            @font-face{
+                font-family: MGothic;
+                src: local('210 M고딕050'),
+                     url('210 M고딕050.ttf') format('truetype');
+            }
+            *{
+                font-family: MGothic 'sans-serif'
+            }
+            #header {
+                position: fixed;
+                left: 0;
+                top: 0;
+                width: 310px;
+                height: 100vh;
+                background: #FFC2C5;
+                padding: 50px 0;
+            }
+            a {
+                color: #555;
+                text-decoration: none;
+                margin: 0;
+                padding: 0;
+                vertical-align: baseline;
+            }
+            #header .logo a {
+                display: inline-block;
+                padding-bottom: 40px;
+            }
+            #header .logo {
+                position: relative;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+            #header .logo::after {
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 216px;
+                height: 1px;
+                background: #fdf4f4;
+                content: '';
+            }
+            ul, li {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+            }
+            ul {
+                display: block;
+                list-style-type: disc;
+                margin-block-start: 1em;
+                margin-block-end: 1em;
+                margin-inline-start: 0px;
+                margin-inline-end: 0px;
+                padding-inline-start: 40px;
+            }
+            li {
+                display: list-item;
+                text-align: -webkit-match-parent;
+            }
+            #nav > ul > li > a {
+                display: inline-block;
+                padding: 25px 41px 10px 48px;
+                font-size: 1.9rem;
+                color: #2d2d2d;
+                font-family: MGothic, sans-serif;
+                font-weight: 600;
+            }
+            ul > li{
+                font-family: MGothic, sans-serif;
+            }
+            #fullpage {
+                margin-top: 150px;
+                margin-left: 800px;
+            }
+            .cGcGK {
+                float: left;
+                margin-right: 28px;
+            }
+            #View_area{
+                width: 614px;
+                height: 500px;
+                color: black;
+                border: 1px solid black;
+                display: inline-block;
+            }
+            .filebox{
+                text-align: right;
+            }
+            .filebox label {
+                font-family: MGothic, sans-serif;
+                display: inline-block;
+                padding: 10px 50px;
+                font-size: 0.8em;
+                line-height: normal;
+                vertical-align: middle;
+                background-color: #FFC2C5;
+                cursor: pointer;
+                border-radius: .20em;
+                -webkit-transition: background-color 0.2s;
+                transition: background-color 0.2s;
+            }
+
+            .filebox label:hover {
+                background-color: rgb(255, 211, 213);
+            }
+
+            .filebox label:active {
+                background-color: #FFC2C5;
+            }
+
+            .filebox input[type="file"] {
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                padding: 0;
+                margin: -1px;
+                overflow: hidden;
+                clip: rect(0, 0, 0, 0);
+                border: 0;
+            }
+
+            .filebox textarea{
+                display: block;
+                width: 610px;
+                font-size: 1.5em;
+            }
+            button{
+                font-family: MGothic, sans-serif;
+                background-color: #FFC2C5;
+                border: none;
+                padding: 10px 50px;
+                border-radius: .20em;
+                cursor: pointer;
+                font-size: 0.8em;
+            }
+        </style>
+    </head>
+    <body>
+        <header id="header">
+            <div>
+                <div class="logo">
+                    <a href="main.html">
+                        <img src="mainLogo.png" width="80%">
+                    </a>
+                </div>
+                <nav id="nav">
+                    <ul>
+                        <li>
+                            <a href="main.html">
+                                <span>그룹 1</span>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="">
+                                        <span>사진 업로드</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <div id="fullpage">
+            <div class="cGcGK">
+                <div class="filebox">
+                    <form method="post" action="./main.html" style="margin: 0;">
+                        <div id='View_area' onload="preview('View_area')"></div>
+                        <textarea name="story" id="" cols="30" rows="6"></textarea>
+                        <select name="" id="">
+                            <option value="all">전체공개</option>
+                            <option value="group1">그룹 1 공개</option>
+                            <option value="me">나만보기</option>
+                        </select>
+                        <label for="profile_pt">사진</label>
+                        <input type="file" name="profile_pt" id="profile_pt" onchange="previewImage(this,'View_area')">
+                        <button type="submit">업로드</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>  
