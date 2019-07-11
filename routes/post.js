@@ -2,6 +2,8 @@
 const express = require('express');
 //express 서버 사용
 const app = express();
+// var router = express.Router();
+
 //app <--tomcat 과 같다고생각하면됨
 //모듈 만들기 모듈을 받을땐 모듈이름이 - 으로 연결한다.
 const bodyParser = require('body-parser'); 
@@ -47,7 +49,7 @@ const static = require('serve-static');
 //static 을 설치후 사용하기위해 담아준다. static은 자체가 함수임
  
 //정적 미들웨어
-app.use(express.static(path.join(__dirname + '/public')));
+app.use(express.static(path.join('../public')));
 app.get('/', function(req, res){
     res.render('addBoard');
   });
@@ -91,14 +93,14 @@ router.post('/addBoard',(req,res)=>{
 });
  
 //리스트
-router.get('/boardList',(req,res)=>{
-    res.redirect('/boardList/1');
+router.get('/main',(req,res)=>{
+    res.redirect('/main/1');
     //boardList경로 이동 요청시 boardList/1로 이동 요청.
 });
  
-router.get('/boardList/:currentPage',(req,res)=>{
+router.get('/main/:currentPage',(req,res)=>{
     //boardList/currentPage 요청시 처리과정 진행
-    console.log('/boardList 요청');
+    console.log('/main 요청');
     //페이징    
     let rowPerPage = 10;    // 페이지당 보여줄 글목록 : 10개
     let currentPage = 1;    
@@ -133,7 +135,7 @@ router.get('/boardList/:currentPage',(req,res)=>{
                     model.boardList = rs;
                     model.currentPage = currentPage;
                     model.lastPage = lastPage;
-                    res.render('boardList',{model:model});
+                    res.render('main',{model:model});
                 }
             });
         });
@@ -145,7 +147,7 @@ router.get('/boardDetail/:idx',(req,res)=>{
     console.log('/boardDetail 요청');
     console.log(req.params.idx);
     if(!req.params.idx){
-        res.redirect('boardList');
+        res.redirect('main');
     }else{
         pool.getConnection((err, conn)=>{
         conn.query('SELECT idx,board_title,board_content,board_user,board_date FROM board WHERE idx=?'
@@ -161,74 +163,13 @@ router.get('/boardDetail/:idx',(req,res)=>{
     }
 });
  
-// 삭제폼(비밀번호 확인을 위한 )
-router.get('/deleteBoard/:idx',(req,res)=>{
-    console.log('/deleteBoard 삭제 요청');
-    const idx = parseInt(req.params.idx);
-    console.log(idx);
-    res.render('deleteBoard',{deleteBoard:idx});
-});
- 
-// 삭제액션
-router.post('/deleteBoard',(req,res)=>{
-    console.log('/deleteBoard 삭제 처리');
-    const idx = req.body.idx;
-    const board_pw = req.body.board_pw;
-    pool.getConnection((err, conn)=>{
-            conn.query('DELETE FROM board WHERE idx =? AND board_pw=?'
-                ,[idx,board_pw],(err,rs)=>{
-            if(err){
-                console.log(err);
-                res.end();
-            }else{
-                res.redirect('boardList');
-            }
-        });
-    });
-});
-   
-// 수정폼
-router.get('/updateBoard/:idx',(req,res)=>{
-    console.log('/updateBoard 수정폼 요청');
-    const idx = parseInt(req.params.idx);
-    console.log(idx);
-    pool.getConnection((err, conn)=>{
-        conn.query('SELECT idx,board_pw,board_title,board_content,board_user FROM board WHERE idx=?'
-                ,[idx],(err,rs)=>{
-            if(err){
-                console.log(err);
-                res.end();
-            }else{
-                res.render('updateBoard',{updateBoard:rs[0]});
-            }
-        });
-    });
-});
-// 수정액션
-router.post('/updateBoard',(req,res)=>{
-    console.log('/updateBoard 수정액션 요청');
-    const idx = req.body.idx;
-    const board_pw = req.body.board_pw;
-    const board_title = req.body.board_title;
-    const board_content = req.body.board_content;
-    pool.getConnection((err, conn)=>{
-        conn.query('UPDATE board SET board_title=?,board_content=? WHERE board_pw=? AND idx=?'
-             ,[board_title,board_content,board_pw,idx],(err,rs)=>{
-           if(err){
-              console.log(err);
-              res.end();
-          }else{
-              res.redirect('boardList');
-          }
-        });
-    });
-});
- 
 app.use('/',router);//실행되면 다시 위로 올라감..
 //모든요청에 라우터를 쓸거다!!
 //미들웨어 설정 끝
  
-//80번 포트 웹서버 구동
-app.listen(8080,()=>{
-    console.log('8080번 port로 서버실행');
-});
+// //80번 포트 웹서버 구동
+// app.listen(8080,()=>{
+//     console.log('8080번 port로 서버실행');
+// });
+
+module.exports = router;

@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -123,7 +123,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/imgUp" class="upload">
+                            <a href="/PostUp" class="upload">
                                 <span>업로드</span>
                             </a>
                         </li>
@@ -142,42 +142,37 @@
         </header>
         <div id="fullpage">
             <div class="cGcGK">
-                <table class="sub_news" border="1" cellspacing="0" summary="게시판의 글제목 리스트">
-                    <caption>게시판 리스트</caption>
-                    <colgroup>
-                        <col width="20">
-                        <col width="110">
-                        <col width="100">
-                        <col width="80">
-                    </colgroup>
-                    <thead>
-                        <tr>
-                            <!-- <th scope="col">아이디</th>
-                            <th scope="col">제목</th>
-                            <th scope="col">글쓴이</th>
-                            <th scope="col">날짜</th> -->
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- <table border='1'> -->
-                            <tr>
-                                <th>번호</th>
-                                <th>제목</th>
-                                <th>작성자</th>
-                            </tr>
-                        <%         
-                        for(let i=0; i<model.main.length; i++) {        
-                        %> 
-                        <tr>   
-                            <td><%=model.main[i].idx %></td>
-                            <td><a href='/boardDetail/<%=model.main[i].idx%>'><%=model.main[i].board_title %></a></td>
-                            <td><%=model.main[i].board_user %></td>
-                        </tr>                   
-                        <%  
-                        }
-                        %>
-                    </tbody> 
-                </table> 
+            <table class="sub_news" border="1" cellspacing="0" summary="게시판의 글제목 리스트">
+                <caption>게시판 리스트</caption>
+                <colgroup>
+                    <col width="20">
+                    <col width="110">
+                    <col width="100">
+                    <col width="80">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th scope="col">아이디</th>
+                        <th scope="col">제목</th>
+                        <th scope="col">글쓴이</th>
+                        <th scope="col">날짜</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="id">1</td>
+                        <td class="title">
+                            <a href="#">게시판 제목이 들어갑니다</a>
+                            <!-- <img width="13" height="12" class="pic" alt="첨부이미지" src="ic_pic.gif"> -->
+                        </td>
+                        <td class="name">글쓴이이름</td>
+                        <td class="date">2008/02/14</td>
+                    </tr>
+                <!-- tr이 제목 1줄입니다 보일 list 갯수만큼 li반복합니다.-->
+                </tbody>
+                </table>
+                
+                <!-- 리스트 게시판 끝-->
             </div>
         </div>
     </body>

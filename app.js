@@ -3,9 +3,10 @@ var mysql      = require('mysql');
 var dbConfig   = require('./config/database.js');
 var path = require('path');
 var bodyParser = require('body-parser');
-var ejs = require('ejs');
+// var ejs = require('ejs');
 
 var loginRouter = require('./routes/login');
+var postRouter = require('./routes/post');
 
 var app = express();
 
@@ -25,18 +26,18 @@ app.use(express.static(path.join(__dirname+'/public')));
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
-app.use('/',loginRouter);
+// app.use('/',loginRouter);
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use('/login',loginRouter);
+app.use('/', loginRouter);
+app.use('/login', loginRouter);
+app.use('/PostUp', postRouter);
+app.use('/main', postRouter);
+
 
 app.get('/SignUp',function(req, res){
     res.render('SignUp');
-});
-
-app.get('/imgUp',function(req, res){
-    res.render('imgUp');
 });
 
 app.get('/main',function(req, res){
